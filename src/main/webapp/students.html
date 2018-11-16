@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+	$(document).ready(function() {	// 문서가 준비되면 ajax 요청
+		$.ajax({
+			type : "GET",
+			url : "/students",
+			success : function(result) { // [...{학생목록들}...]
+				$(result).each(function(index, item) {
+					// console.log(item);
+					$("#result").append("<tr>");
+					$("#result").append("<td>"+item.no+"</td>");
+					$("#result").append("<td>"+item.team+"</td>");
+					$("#result").append("<td>"+item.name+"</td>");
+					$("#result").append("</tr>");
+				});
+			}
+		});
+	});
+</script>
+</head>
+<body>
+	<h1>학생 목록</h1>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>번호</th><th>반</th><th>이름</th>
+			</tr>
+		</thead>
+		<tbody id="result">
+		</tbody>	
+	</table>
+</body>
+</html>
